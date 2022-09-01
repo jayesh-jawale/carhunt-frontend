@@ -65,3 +65,26 @@
   font-size: 30px;
   text-align: center;
 }
+
+.car-container {
+  padding: 10px;
+  margin: 10px;
+  width: 20rem;
+}
+
+.car-cards {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.car-image {
+  max-width: 100%;
+}
+.car-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

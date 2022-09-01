@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 import { EntryPage } from "./pages/entryPage";
 import { LandingPage } from "./pages/landingPage";
 import { MarutiSuzukiPage } from "./pages/marutiSuzukiPage";
+import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDetails";
 
 import {
   BrowserRouter as Router,
@@ -27,9 +28,20 @@ export default function App() {
           <main className="py-3">
             {/* <Container> */}
             <Header />
-            <ProtectedRoute path="/landing-page">
+
+            <ProtectedRoute exact path="/landing-page">
               <LandingPage />
             </ProtectedRoute>
+
+            <ProtectedRoute exact path="/maruti-suzuki">
+              <MarutiSuzukiPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/maruti-suzuki/:_id">
+              <MarutiSuzukiDetails />
+            </ProtectedRoute>
+
+
             <Footer />
             {/* </Container> */}
           </main>

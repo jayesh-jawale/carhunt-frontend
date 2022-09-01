@@ -20,14 +20,14 @@ export function Landing() {
 
         <div className="car-brands-container">
           <Link to="/maruti-suzuki">
-          <div class="car-item">Maruti Suzuki</div>
+          <div className="car-item">Maruti Suzuki</div>
           </Link>
 
-          <div class="car-item">Hyundai</div>
-          <div class="car-item">Tata</div>
-          <div class="car-item">Toyota</div>
-          <div class="car-item">Kia</div>
-          <div class="car-item">Honda</div>
+          <div className="car-item">Hyundai</div>
+          <div className="car-item">Tata</div>
+          <div className="car-item">Toyota</div>
+          <div className="car-item">Kia</div>
+          <div className="car-item">Honda</div>
         </div>
       </div>
 
