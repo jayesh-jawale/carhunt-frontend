@@ -22,8 +22,9 @@ export function Landing() {
           <Link to="/maruti-suzuki">
           <div className="car-item">Maruti Suzuki</div>
           </Link>
-
+          <Link to="/hyundai">
           <div className="car-item">Hyundai</div>
+          </Link>
           <div className="car-item">Tata</div>
           <div className="car-item">Toyota</div>
           <div className="car-item">Kia</div>

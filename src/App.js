@@ -7,6 +7,8 @@ import { EntryPage } from "./pages/entryPage";
 import { LandingPage } from "./pages/landingPage";
 import { MarutiSuzukiPage } from "./pages/marutiSuzukiPage";
 import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDetails";
+import { HyundaiPage } from "./pages/hyundaiPage";
+import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
 
 import {
   BrowserRouter as Router,
@@ -41,6 +43,13 @@ export default function App() {
               <MarutiSuzukiDetails />
             </ProtectedRoute>
 
+            <ProtectedRoute exact path="/hyundai">
+              <HyundaiPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/hyundai/:_id">
+              <HyundaiDetails />
+            </ProtectedRoute>
 
             <Footer />
             {/* </Container> */}
