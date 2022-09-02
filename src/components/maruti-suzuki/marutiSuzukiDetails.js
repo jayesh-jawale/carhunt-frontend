@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import  {useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchSingleMarutiSuzukiCar } from "../../actions/marutiSuzuki";
+import { fetchSingleMarutiSuzukiCar } from "../../actions/carActions";
 
 export function MarutiSuzukiDetails() {
   const { fetchSingleCar } = useSelector((state) => state.marutiSuzukiCar);

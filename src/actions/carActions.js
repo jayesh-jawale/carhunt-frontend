@@ -6,7 +6,7 @@ import {
   fetchSingleCarLoading,
   fetchSingleCarSuccess,
   fetchSingleCarFail,
-} from "../slices/marutiSuzukiCarSlice";
+} from "../slices/carSlice";
 
 const getCarsURL = "http://localhost:9000/get-cars/";
 
