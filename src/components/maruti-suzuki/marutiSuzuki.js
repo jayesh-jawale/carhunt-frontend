@@ -20,7 +20,7 @@ export function MarutiSuzuki() {
             <Card.Img variant="top" src={car.image} />
             <Card.Body style={{ textAlign: "center" }}>
               <Card.Title>
-                <Link to={`/maruti-suzuki/${car._id}`}>{car.name}</Link>
+                <Link to={`/Maruti/${car._id}`}>{car.name}</Link>
               </Card.Title>
               <Card.Text>
                 <b>Average : </b> {car.average}

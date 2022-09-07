@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Link} from "react-router-dom";
-import { Button } from "react-bootstrap";
+
+import { fetchMarutiSuzukiCars } from "../actions/carActions";
+
+import { useDispatch } from "react-redux";
 
 export function Landing() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMarutiSuzukiCars());
+  }, [dispatch]);
+
   return (
     <React.Fragment>
       <div className="carhunt-container">
@@ -19,10 +28,10 @@ export function Landing() {
         </h3>
 
         <div className="car-brands-container">
-          <Link to="/maruti-suzuki">
+          <Link to="/Maruti">
           <div className="car-item">Maruti Suzuki</div>
           </Link>
-          <Link to="/hyundai">
+          <Link to="/Hyundai">
           <div className="car-item">Hyundai</div>
           </Link>
           <div className="car-item">Tata</div>

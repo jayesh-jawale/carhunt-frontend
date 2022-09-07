@@ -1,13 +1,35 @@
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-
 import { FaShoppingCart } from "react-icons/fa";
 
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import { filterSearchCars } from "../actions/carActions";
+
 export function Header() {
+  const [searchTerm, setSearchTerm] = useState();
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (dispatch(filterSearchCars(searchTerm))) {
+      history.push(`/search/${searchTerm}`);
+    } else {
+      history.push("/");
+    }
+  };
+
   return (
     <header>
       <Navbar bg="light" expand="lg">
@@ -20,14 +42,17 @@ export function Header() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Form className="d-flex">
+              <Form onSubmit={handleSubmit} className="d-flex">
                 <Form.Control
                   type="search"
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search"
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button variant="outline-success">Search</Button>
+                <Button type="submit" variant="outline-success">
+                  Search
+                </Button>
               </Form>
 
               <Nav.Link href="#action1">

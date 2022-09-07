@@ -23,7 +23,7 @@ export function HyundaiDetails() {
     <Container>
       <Row>
         <Col>
-          <Button style={{ marginTop: "20px" }} onClick={() => history.push("/hyundai")} variant="light">
+          <Button style={{ marginTop: "20px" }} onClick={() => history.push("/Hyundai")} variant="light">
             Go Back
           </Button>{" "}
         </Col>

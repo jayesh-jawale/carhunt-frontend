@@ -1,7 +1,7 @@
 import "./App.css";
+import { useState } from "react";
 import { Header } from "./layouts/header";
 import { Footer } from "./layouts/footer";
-import { Container } from "react-bootstrap";
 
 import { EntryPage } from "./pages/entryPage";
 import { LandingPage } from "./pages/landingPage";
@@ -9,6 +9,7 @@ import { MarutiSuzukiPage } from "./pages/marutiSuzukiPage";
 import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDetails";
 import { HyundaiPage } from "./pages/hyundaiPage";
 import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
+import { SearchCar } from "./components/searchCar";
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
+  const [searchCar, setSearchCar] = useState();
   return (
     <div className="App">
       <Router>
@@ -35,19 +37,23 @@ export default function App() {
               <LandingPage />
             </ProtectedRoute>
 
-            <ProtectedRoute exact path="/maruti-suzuki">
+            <ProtectedRoute exact path="/search/:car">
+              <SearchCar />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/Maruti">
               <MarutiSuzukiPage />
             </ProtectedRoute>
 
-            <ProtectedRoute exact path="/maruti-suzuki/:_id">
+            <ProtectedRoute exact path="/Maruti/:_id">
               <MarutiSuzukiDetails />
             </ProtectedRoute>
 
-            <ProtectedRoute exact path="/hyundai">
+            <ProtectedRoute exact path="/Hyundai">
               <HyundaiPage />
             </ProtectedRoute>
 
-            <ProtectedRoute exact path="/hyundai/:_id">
+            <ProtectedRoute exact path="/Hyundai/:_id">
               <HyundaiDetails />
             </ProtectedRoute>
 

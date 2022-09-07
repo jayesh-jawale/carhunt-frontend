@@ -29,7 +29,7 @@ export function Hyundai() {
               <Card.Img variant="top" src={car.image} />
               <Card.Body style={{ textAlign: "center" }}>
                 <Card.Title>
-                  <Link to={`/hyundai/${car._id}`}>{car.name}</Link>
+                  <Link to={`/Hyundai/${car._id}`}>{car.name}</Link>
                 </Card.Title>
                 <Card.Text>
                   <b>Average : </b> {car.average}

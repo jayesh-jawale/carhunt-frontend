@@ -23,7 +23,7 @@ export function MarutiSuzukiDetails() {
     <Container>
       <Row>
         <Col>
-          <Button style={{ marginTop: "20px" }} onClick={() => history.push("/maruti-suzuki")} variant="light">
+          <Button style={{ marginTop: "20px" }} onClick={() => history.push("/Maruti")} variant="light">
             Go Back
           </Button>{" "}
         </Col>

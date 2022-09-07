@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit"
 const initialState = {
     cars: [],
     fetchSingleCar: [],
+    searchSingleCar: [],
     isLoading: false,
     error: ""
 }
@@ -16,11 +17,20 @@ const marutiSuzukiCarSlice = createSlice({
         },
         fetchCarSuccess: (state, action) => {
             state.cars = action.payload;
+            state.searchSingleCar = action.payload;
             state.isLoading = false;
         },
         fetchCarFail: (state, action) => {
             state.error = action.payload;
             state.isLoading = false;
+        },
+        searchCars: (state, action) => {
+                state.searchSingleCar = state.cars.filter((searchCar) => {
+                    if(!action.payload)
+                    return searchCar;
+    
+                    return searchCar.name.toLowerCase().includes(action.payload.toLowerCase());
+                })
         },
         fetchSingleCarLoading: (state) => {
             state.isLoading = true;
@@ -42,6 +52,7 @@ export const {
     fetchCarLoading,
     fetchCarSuccess,
     fetchCarFail,
+    searchCars,
     fetchSingleCarLoading,
     fetchSingleCarSuccess,
     fetchSingleCarFail

@@ -88,3 +88,13 @@
   flex-direction: column;
   align-items: center;
 }
+
+.search-car {
+  padding: 10px;
+  margin: 10px;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
