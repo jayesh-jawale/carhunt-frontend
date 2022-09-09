@@ -1,10 +1,10 @@
 import "./App.css";
-import { useState } from "react";
 import { Header } from "./layouts/header";
 import { Footer } from "./layouts/footer";
 
 import { EntryPage } from "./pages/entryPage";
 import { LandingPage } from "./pages/landingPage";
+import { Registration } from "./pages/registrationPage";
 import { MarutiSuzukiPage } from "./pages/marutiSuzukiPage";
 import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDetails";
 import { HyundaiPage } from "./pages/hyundaiPage";
@@ -20,13 +20,15 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
-  const [searchCar, setSearchCar] = useState();
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/">
             <EntryPage />
+          </Route>
+          <Route exact path="/registration">
+            <Registration />
           </Route>
 
           <main className="py-3">
