@@ -9,7 +9,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { filterSearchCars } from "../actions/carActions";
@@ -19,6 +19,7 @@ export function Header() {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const {users} = useSelector((state) => state.login)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,7 +66,7 @@ export function Header() {
               <Nav.Link>
                 <FaShoppingCart />
               </Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
+              <NavDropdown title={users.data.name} id="navbarScrollingDropdown">
                 <NavDropdown.Item>Profile</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => logMeOut()}>
                   Logout

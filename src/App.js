@@ -9,8 +9,8 @@ import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDeta
 import { HyundaiPage } from "./pages/hyundaiPage";
 import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
 import { SearchCar } from "./components/searchCar";
-import { loginSuccess } from "./slices/loginSlice";
 import { Layout } from "./layouts/layout";
+import { userLogin } from "./actions/loginAction";
 
 import { useDispatch, useSelector } from "react-redux/es/exports";
 
@@ -75,7 +75,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
   const { isAuth } = useSelector((state) => state.login);
 
   useEffect(() => {
-    sessionStorage.getItem("token") && dispatch(loginSuccess());
+    sessionStorage.getItem("token") && dispatch(userLogin());
   }, [dispatch]);
 
   return (
