@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -6,6 +6,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaShoppingCart } from "react-icons/fa";
+
+import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -18,8 +20,6 @@ export function Header() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -30,11 +30,18 @@ export function Header() {
     }
   };
 
+  const logMeOut = () => {
+    sessionStorage.clear();
+    history.push("/");
+  };
+
   return (
     <header>
       <Navbar bg="light" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">CARHUNT</Navbar.Brand>
+          <Link to="/landing-page">
+          <Navbar.Brand>CARHUNT</Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -55,12 +62,14 @@ export function Header() {
                 </Button>
               </Form>
 
-              <Nav.Link href="#action1">
+              <Nav.Link>
                 <FaShoppingCart />
               </Nav.Link>
               <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
+                <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => logMeOut()}>
+                  Logout
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

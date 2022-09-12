@@ -1,6 +1,5 @@
 import "./App.css";
-import { Header } from "./layouts/header";
-import { Footer } from "./layouts/footer";
+import { useEffect } from "react";
 
 import { EntryPage } from "./pages/entryPage";
 import { LandingPage } from "./pages/landingPage";
@@ -10,6 +9,10 @@ import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDeta
 import { HyundaiPage } from "./pages/hyundaiPage";
 import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
 import { SearchCar } from "./components/searchCar";
+import { loginSuccess } from "./slices/loginSlice";
+import { Layout } from "./layouts/layout";
+
+import { useDispatch, useSelector } from "react-redux/es/exports";
 
 import {
   BrowserRouter as Router,
@@ -24,16 +27,16 @@ export default function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/">
-            <EntryPage />
-          </Route>
-          <Route exact path="/registration">
-            <Registration />
-          </Route>
-
           <main className="py-3">
             {/* <Container> */}
-            <Header />
+
+            <Route exact path="/">
+              <EntryPage />
+            </Route>
+
+            <Route exact path="/registration">
+              <Registration />
+            </Route>
 
             <ProtectedRoute exact path="/landing-page">
               <LandingPage />
@@ -59,7 +62,6 @@ export default function App() {
               <HyundaiDetails />
             </ProtectedRoute>
 
-            <Footer />
             {/* </Container> */}
           </main>
         </Switch>
@@ -68,15 +70,20 @@ export default function App() {
   );
 }
 
-function ProtectedRoute({ component: Component, ...restOfProps }) {
-  const isAuthenticated = false;
+const ProtectedRoute = ({ children, ...rest }) => {
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.login);
+
+  useEffect(() => {
+    sessionStorage.getItem("token") && dispatch(loginSuccess());
+  }, [dispatch]);
 
   return (
     <Route
-      {...restOfProps}
-      render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
+      {...rest}
+      render={() =>
+        isAuth ? <Layout>{children}</Layout> : <Redirect to="/" />
       }
     />
   );
-}
+};
