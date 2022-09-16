@@ -10,7 +10,7 @@ import { HyundaiPage } from "./pages/hyundaiPage";
 import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
 import { SearchCar } from "./components/searchCar";
 import { Layout } from "./layouts/layout";
-import { userLogin } from "./actions/loginAction";
+import { loginSuccess } from "./slices/loginSlice";
 
 import { useDispatch, useSelector } from "react-redux/es/exports";
 
@@ -18,7 +18,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -75,15 +74,17 @@ const ProtectedRoute = ({ children, ...rest }) => {
   const { isAuth } = useSelector((state) => state.login);
 
   useEffect(() => {
-    sessionStorage.getItem("token") && dispatch(userLogin());
+    localStorage.getItem("userInfo") && dispatch(loginSuccess());
   }, [dispatch]);
 
   return (
     <Route
       {...rest}
-      render={() =>
-        isAuth ? <Layout>{children}</Layout> : <Redirect to="/" />
-      }
+      render={() => {
+        if (isAuth) {
+          return <Layout>{children}</Layout>;
+        }
+      }}
     />
   );
 };

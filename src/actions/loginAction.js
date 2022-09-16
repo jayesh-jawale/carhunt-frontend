@@ -9,6 +9,7 @@ export const userLogin = (userDetails) => async (dispatch) => {
 
       if(result.data.status === "success") {
         sessionStorage.setItem('token', result.data.token);
+        localStorage.setItem("userInfo", JSON.stringify(result.data))
       }
     } catch (error) {
       dispatch(loginFail(error.message));
