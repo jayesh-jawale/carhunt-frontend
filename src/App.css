@@ -114,3 +114,35 @@
   align-items: center;
   height: 100vh;
 }
+
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.cart {
+  height: 100vh;
+  padding: 20px;
+  margin: 20px;
+}
+
+.checkout-button {
+  width: 40%;
+}
+
+.clear-cart-button {
+  width: 30%;
+}
+
+@media screen and (max-width: 550px) {
+  .checkout-button {
+    width: auto;
+  }
+
+  .clear-cart-button {
+    width: auto;
+  }
+}

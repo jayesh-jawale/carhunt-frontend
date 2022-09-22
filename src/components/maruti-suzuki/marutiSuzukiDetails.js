@@ -4,10 +4,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import  {useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchSingleMarutiSuzukiCar } from "../../actions/carActions";
+import { addToCartSuccess } from "../../slices/cartSlice";
 
 export function MarutiSuzukiDetails() {
   const { fetchSingleCar } = useSelector((state) => state.marutiSuzukiCar);
@@ -19,11 +20,20 @@ export function MarutiSuzukiDetails() {
     dispatch(fetchSingleMarutiSuzukiCar(_id));
   }, [_id, dispatch]);
 
+  const handleAddToCart = (fetchSingleCar) => {
+    dispatch(addToCartSuccess(fetchSingleCar));
+    history.push("/cart");
+  };
+
   return (
     <Container>
       <Row>
         <Col>
-          <Button style={{ marginTop: "20px" }} onClick={() => history.push("/Maruti")} variant="light">
+          <Button
+            style={{ marginTop: "20px" }}
+            onClick={() => history.push("/Maruti")}
+            variant="light"
+          >
             Go Back
           </Button>{" "}
         </Col>
@@ -41,9 +51,13 @@ export function MarutiSuzukiDetails() {
       <Row>
         <Col className="car-cart">
           <div style={{ marginTop: "20px" }}>
-            <b>Price: </b> {fetchSingleCar.price}
+            <b>Price: </b> {fetchSingleCar.price} Lakh
           </div>
-          <Button style={{ marginTop: "20px" }} variant="primary">
+          <Button
+            style={{ marginTop: "20px" }}
+            onClick={() => handleAddToCart(fetchSingleCar)}
+            variant="primary"
+          >
             ADD TO CART
           </Button>{" "}
         </Col>

@@ -31,7 +31,7 @@ export function MarutiSuzuki() {
               </Card.Text>
               <Card.Text>
                 <b>Price : </b>
-                {car.price}
+                {car.price} Lakh
               </Card.Text>
             </Card.Body>
           </Card>

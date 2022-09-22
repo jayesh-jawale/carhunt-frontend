@@ -3,8 +3,10 @@ import { useEffect } from "react";
 
 import { EntryPage } from "./pages/entryPage";
 import { LandingPage } from "./pages/landingPage";
+import { fetchMarutiSuzukiCars } from "./actions/carActions";
 import { Registration } from "./pages/registrationPage";
 import { MarutiSuzukiPage } from "./pages/marutiSuzukiPage";
+import { AddCartPage } from "./pages/addToCartPage";
 import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDetails";
 import { HyundaiPage } from "./pages/hyundaiPage";
 import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
@@ -14,17 +16,21 @@ import { loginSuccess } from "./slices/loginSlice";
 
 import { useDispatch, useSelector } from "react-redux/es/exports";
 
+import {ToastContainer} from "react-toastify"
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   return (
     <div className="App">
       <Router>
+        <ToastContainer/>
         <Switch>
           <main className="py-3">
             {/* <Container> */}
@@ -61,6 +67,10 @@ export default function App() {
               <HyundaiDetails />
             </ProtectedRoute>
 
+            <ProtectedRoute exact path="/cart">
+              <AddCartPage />
+            </ProtectedRoute>
+
             {/* </Container> */}
           </main>
         </Switch>
@@ -74,7 +84,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
   const { isAuth } = useSelector((state) => state.login);
 
   useEffect(() => {
-    localStorage.getItem("userInfo") && dispatch(loginSuccess());
+    localStorage.getItem("userInfo") && dispatch(loginSuccess()) && dispatch(fetchMarutiSuzukiCars());
   }, [dispatch]);
 
   return (
