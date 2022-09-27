@@ -8,9 +8,10 @@ import { getTotals } from "../slices/cartSlice";
 import { clearCart } from "../slices/cartSlice";
 
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export function AddToCart() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
 
@@ -96,7 +97,7 @@ export function AddToCart() {
               </Col>
               <Col>
                 <h4> Subtotal : {cartTotalAmount} Lakh </h4>
-                <Button className="checkout-button"> Checkout </Button>
+                <Button onClick={() => history.push("/shipping")} className="checkout-button"> Checkout </Button>
               </Col>
             </Row>
           </div>
