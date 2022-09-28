@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { Container, Form, Button, Col } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { CheckoutSteps } from "../pages/checkoutStepsPage";
+import { savePaymentMethod } from "../actions/paymentRelatedActions";
 
 export function Payment() {
+    const dispatch = useDispatch();
   const history = useHistory();
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    localStorage.setItem("paymentMethod", JSON.stringify(paymentMethod));
+    dispatch(savePaymentMethod(paymentMethod));
     history.push("/placeorder");
   };
 

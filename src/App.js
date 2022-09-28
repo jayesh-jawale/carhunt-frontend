@@ -7,6 +7,8 @@ import { fetchMarutiSuzukiCars } from "./actions/carActions";
 import { Registration } from "./pages/registrationPage";
 import { MarutiSuzukiPage } from "./pages/marutiSuzukiPage";
 import { AddCartPage } from "./pages/addToCartPage";
+import { Shipping } from "./components/shipping";
+import { Payment } from "./components/payment";
 import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDetails";
 import { HyundaiPage } from "./pages/hyundaiPage";
 import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
@@ -69,6 +71,14 @@ export default function App() {
 
             <ProtectedRoute exact path="/cart">
               <AddCartPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/shipping">
+              <Shipping />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/payment">
+              <Payment />
             </ProtectedRoute>
 
             {/* </Container> */}

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux'
 
 import { CheckoutSteps } from "../pages/checkoutStepsPage";
+import { saveShippingAddress } from "../actions/paymentRelatedActions";
 
 export function Shipping() {
   const history = useHistory();
+  const dispatch = useDispatch()
 
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -14,11 +17,7 @@ export function Shipping() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    localStorage.setItem(
-      "shippingAddress",
-      JSON.stringify({ address, city, postalCode, country })
-    );
-
+    dispatch(saveShippingAddress({ address, city, postalCode, country }))
     history.push("/payment");
   };
 
