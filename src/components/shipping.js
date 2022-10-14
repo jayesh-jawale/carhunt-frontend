@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
 import { CheckoutSteps } from "../pages/checkoutStepsPage";
 import { saveShippingAddress } from "../actions/paymentRelatedActions";
 
 export function Shipping() {
   const history = useHistory();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { shippinngAddress } = useSelector((state) => state.cart);
 
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState(shippinngAddress.address);
+  const [city, setCity] = useState(shippinngAddress.city);
+  const [postalCode, setPostalCode] = useState(shippinngAddress.postalCode);
+  const [country, setCountry] = useState(shippinngAddress.country);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }))
+    dispatch(saveShippingAddress({ address, city, postalCode, country }));
     history.push("/payment");
   };
 
@@ -32,7 +33,7 @@ export function Shipping() {
             <Form.Control
               type="text"
               placeholder="Enter address"
-              value={address}
+              value={shippinngAddress.address}
               required
               onChange={(e) => setAddress(e.target.value)}
             ></Form.Control>
@@ -43,7 +44,7 @@ export function Shipping() {
             <Form.Control
               type="text"
               placeholder="Enter city"
-              value={city}
+              value={shippinngAddress.city}
               required
               onChange={(e) => setCity(e.target.value)}
             ></Form.Control>
@@ -54,7 +55,7 @@ export function Shipping() {
             <Form.Control
               type="text"
               placeholder="Enter postal code"
-              value={postalCode}
+              value={shippinngAddress.postalCode}
               required
               onChange={(e) => setPostalCode(e.target.value)}
             ></Form.Control>
@@ -65,7 +66,7 @@ export function Shipping() {
             <Form.Control
               type="text"
               placeholder="Enter country"
-              value={country}
+              value={shippinngAddress.country}
               required
               onChange={(e) => setCountry(e.target.value)}
             ></Form.Control>

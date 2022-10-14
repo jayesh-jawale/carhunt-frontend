@@ -31,7 +31,7 @@ export function MarutiSuzukiDetails() {
         <Col>
           <Button
             style={{ marginTop: "20px" }}
-            onClick={() => history.push("/Maruti")}
+            onClick={() => history.goBack()}
             variant="light"
           >
             Go Back

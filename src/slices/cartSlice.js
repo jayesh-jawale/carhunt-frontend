@@ -5,6 +5,10 @@ const initialState = {
   cartItems: localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [],
+  shippinngAddress: {},
+  shippingPrice: [],
+  taxPrice: "",
+  finalTotalAmount: "",
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
   isLoading: false,
@@ -87,6 +91,9 @@ const cartSlice = createSlice({
       total = parseFloat(total.toFixed(2));
       state.cartTotalAmount = total;
       state.cartTotalQuantity = quantity;
+      state.shippingPrice = total > 100 ? 0.00 : 100
+      state.taxPrice = Number((0.15 * total).toFixed(2))
+      state.finalTotalAmount = state.cartTotalAmount + state.shippingPrice + state.taxPrice
     },
     clearCart(state) {
       state.cartItems = [];
@@ -96,6 +103,12 @@ const cartSlice = createSlice({
     addToCartFail: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
+    },
+    shippingAddress: (state, action) => {
+      state.shippinngAddress = action.payload
+    },
+    paymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
     },
   },
 });
@@ -109,6 +122,8 @@ export const {
   getTotals,
   addToCartFail,
   clearCart,
+  shippingAddress,
+  paymentMethod,
 } = actions;
 
 export default reducer;

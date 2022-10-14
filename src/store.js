@@ -5,6 +5,7 @@ import loginReducer from "./slices/loginSlice"
 import cartReducer from "./slices/cartSlice"
 import userReducer from "./slices/userSlice"
 import userUpdateReducer from "./slices/userUpdateProfile"
+import orderReducer from "./slices/orderSlice"
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         login: loginReducer,
         cart: cartReducer,
         user: userReducer,
-        userUpdateDetails: userUpdateReducer
+        userUpdateDetails: userUpdateReducer,
+        orders: orderReducer
     }
 })
 
