@@ -1,25 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  orderItems: [],
   isLoading: false,
   success: false,
   error: "",
 };
 
 const cartSlice = createSlice({
-  name: "orders",
+  name: "orderPay",
   initialState,
   reducers: {
-    addOrderLoading: (state) => {
+    orderPayLoading: (state) => {
       state.isLoading = true;
     },
-    addOrderSuccess(state, action) {
+    orderPaySuccess(state, action) {
       state.isLoading = false;
-      state.orderItems = action.payload;
       state.success = true
     },
-    addOrderFail: (state, action) => {
+    orderPayFail: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
     },
@@ -28,6 +26,6 @@ const cartSlice = createSlice({
 
 const { reducer, actions } = cartSlice;
 
-export const { addOrderLoading, addOrderSuccess, addOrderFail } = actions;
+export const { orderPayLoading, orderPaySuccess, orderPayFail } = actions;
 
 export default reducer;

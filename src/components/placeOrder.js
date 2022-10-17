@@ -1,6 +1,7 @@
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 import { CheckoutSteps } from "../pages/checkoutStepsPage";
 import { orderCre } from "../actions/orderAction";
@@ -10,6 +11,13 @@ export function PlaceOrder() {
 
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const {success, orderItems} = useSelector((state) => state.orders);
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${orderItems._id}`)
+    }
+  }, [history, success, orderItems._id])
 
   const placeOrderHandler = () => {
     dispatch(
@@ -23,7 +31,6 @@ export function PlaceOrder() {
         finalTotalAmount: cart.finalTotalAmount,
       })
     );
-    history.push("/order");
   };
 
   return (
