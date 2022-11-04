@@ -17,6 +17,7 @@ import axios from "axios";
 import {
   getFinalOrderDetails,
   orderPayDetails,
+  orderListDetails,
 } from "../actions/orderAction";
 
 export function OrderScreen() {
@@ -44,7 +45,7 @@ export function OrderScreen() {
       document.body.appendChild(script);
     };
 
-    if (!orderItems || success) {
+    if (!orderItems || success || finalOrderDetails._id !== orderItems._id) {
       dispatch(getFinalOrderDetails(orderItems._id));
     } else if (!orderItems.isPaid) {
       if (!window.paypal) {
@@ -52,8 +53,10 @@ export function OrderScreen() {
       } else {
         setSdkReady(true);
       }
+    } else {
+      dispatch(orderListDetails());
     }
-  }, [dispatch, orderItems, success]);
+  }, [dispatch, orderItems, success, finalOrderDetails._id]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);

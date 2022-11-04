@@ -8,6 +8,7 @@ import userUpdateReducer from "./slices/userUpdateProfile"
 import orderReducer from "./slices/orderSlice"
 import finalOrderReducer from "./slices/finalOrderSlice"
 import orderPayReducer from "./slices/orderPay"
+import orderListReducer from "./slices/orderListSlice"
 
 const store = configureStore({
     reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
         userUpdateDetails: userUpdateReducer,
         orders: orderReducer,
         finalOrders: finalOrderReducer,
-        orderPay: orderPayReducer
+        orderPay: orderPayReducer,
+        ordersList: orderListReducer
     }
 })
 

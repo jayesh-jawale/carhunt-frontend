@@ -13,6 +13,11 @@ import {
   orderPaySuccess,
   orderPayFail,
 } from "../slices/orderPay";
+import {
+  orderListLoading,
+  orderListSuccess,
+  orderListFail,
+} from "../slices/orderListSlice";
 import axios from "axios";
 
 export const orderCre = (data) => async (dispatch) => {
@@ -62,5 +67,20 @@ export const orderPayDetails = (_id, paymentResult) => async (dispatch) => {
     dispatch(orderPaySuccess(result.data));
   } catch (error) {
     dispatch(orderPayFail(error.message));
+  }
+};
+
+export const orderListDetails = () => async (dispatch) => {
+  dispatch(orderListLoading());
+  try {
+    const token = sessionStorage.getItem("token");
+    const result = await axios.get("http://localhost:9000/api/order/myorders", {
+      headers: {
+        Authorization: token,
+      },
+    });
+    dispatch(orderListSuccess(result.data));
+  } catch (error) {
+    dispatch(orderListFail(error.message));
   }
 };
