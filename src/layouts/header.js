@@ -6,20 +6,21 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaShoppingCart } from "react-icons/fa";
+import { Badge } from "react-bootstrap";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import { filterSearchCars } from "../actions/carActions";
 
 export function Header() {
   const [searchTerm, setSearchTerm] = useState();
+  const { users } = useSelector((state) => state.user);
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const {users} = useSelector((state) => state.login)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ export function Header() {
       <Navbar bg="light" expand="lg">
         <Container fluid>
           <Link to="/landing-page">
-          <Navbar.Brand>CARHUNT</Navbar.Brand>
+            <Navbar.Brand>CARHUNT</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -63,11 +64,15 @@ export function Header() {
                 </Button>
               </Form>
 
-              <Nav.Link>
-                <FaShoppingCart />
-              </Nav.Link>
-              <NavDropdown title={users.data.name} id="navbarScrollingDropdown">
-                <NavDropdown.Item>Profile</NavDropdown.Item>
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <FaShoppingCart /> Cart <Badge bg="secondary"></Badge>
+                </Nav.Link>
+              </LinkContainer>
+              <NavDropdown title={users.name} id="navbarScrollingDropdown">
+                <NavDropdown.Item onClick={() => history.push("/profile")}>
+                  Profile
+                </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => logMeOut()}>
                   Logout
                 </NavDropdown.Item>
