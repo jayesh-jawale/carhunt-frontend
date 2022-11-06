@@ -9,6 +9,8 @@ import { MarutiSuzukiPage } from "./pages/marutiSuzukiPage";
 import { AddCartPage } from "./pages/addToCartPage";
 import { Shipping } from "./components/shipping";
 import { Payment } from "./components/payment";
+import { PlaceOrder } from "./components/placeOrder";
+import { OrderScreen } from "./components/orderScreen";
 import { MarutiSuzukiDetails } from "./components/maruti-suzuki/marutiSuzukiDetails";
 import { HyundaiPage } from "./pages/hyundaiPage";
 import { HyundaiDetails } from "./components/hyundai/hyundaiDetails";
@@ -16,23 +18,23 @@ import { SearchCar } from "./components/searchCar";
 import { Layout } from "./layouts/layout";
 import { loginSuccess } from "./slices/loginSlice";
 
+import { Profile } from "./components/profile";
+
 import { useDispatch, useSelector } from "react-redux/es/exports";
 
-import {ToastContainer} from "react-toastify"
+import { ToastContainer } from "react-toastify";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
+
+import { userProfile } from "./actions/userAction";
 
 export default function App() {
   return (
     <div className="App">
       <Router>
-        <ToastContainer/>
+        <ToastContainer />
         <Switch>
           <main className="py-3">
             {/* <Container> */}
@@ -81,6 +83,18 @@ export default function App() {
               <Payment />
             </ProtectedRoute>
 
+            <ProtectedRoute exact path="/placeorder">
+              <PlaceOrder />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/order/:_id">
+              <OrderScreen />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/profile">
+              <Profile />
+            </ProtectedRoute>
+
             {/* </Container> */}
           </main>
         </Switch>
@@ -94,7 +108,10 @@ const ProtectedRoute = ({ children, ...rest }) => {
   const { isAuth } = useSelector((state) => state.login);
 
   useEffect(() => {
-    localStorage.getItem("userInfo") && dispatch(loginSuccess()) && dispatch(fetchMarutiSuzukiCars());
+    localStorage.getItem("userInfo") &&
+      dispatch(loginSuccess()) &&
+      dispatch(userProfile()) &&
+      dispatch(fetchMarutiSuzukiCars());
   }, [dispatch]);
 
   return (
