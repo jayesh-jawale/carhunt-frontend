@@ -34,6 +34,10 @@ export function Header() {
 
   const logMeOut = () => {
     sessionStorage.clear();
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
     history.push("/");
   };
 
