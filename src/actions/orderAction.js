@@ -19,12 +19,13 @@ import {
   orderListFail,
 } from "../slices/orderListSlice";
 import axios from "axios";
+import { API_URL } from "../apiURL";
 
 export const orderCre = (data) => async (dispatch) => {
   dispatch(addOrderLoading());
   try {
     const token = sessionStorage.getItem("token");
-    const result = await axios.post("http://localhost:9000/api/orders", data, {
+    const result = await axios.post(`${API_URL}/api/orders`, data, {
       headers: {
         Authorization: token,
       },
@@ -40,7 +41,7 @@ export const getFinalOrderDetails = (_id) => async (dispatch) => {
   dispatch(finalOrderLoading());
   try {
     const token = sessionStorage.getItem("token");
-    const result = await axios.get(`http://localhost:9000/api/orders/${_id}`, {
+    const result = await axios.get(`${API_URL}/api/orders/${_id}`, {
       headers: {
         Authorization: token,
       },
@@ -56,7 +57,7 @@ export const orderPayDetails = (_id, paymentResult) => async (dispatch) => {
   try {
     const token = sessionStorage.getItem("token");
     const result = await axios.put(
-      `http://localhost:9000/api/orders/${_id}/pay`,
+      `${API_URL}/api/orders/${_id}/pay`,
       paymentResult,
       {
         headers: {
@@ -74,7 +75,7 @@ export const orderListDetails = () => async (dispatch) => {
   dispatch(orderListLoading());
   try {
     const token = sessionStorage.getItem("token");
-    const result = await axios.get("http://localhost:9000/api/order/myorders", {
+    const result = await axios.get(`${API_URL}/api/order/myorders`, {
       headers: {
         Authorization: token,
       },
