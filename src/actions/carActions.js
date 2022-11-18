@@ -8,9 +8,8 @@ import {
   fetchSingleCarSuccess,
   fetchSingleCarFail,
 } from "../slices/carSlice";
-import {API_URL} from "../apiURL"
 
-const getCarsURL = `${API_URL}/get-cars/`;
+const getCarsURL = `${process.env.REACT_APP_API_URL}/get-cars/`;
 
 export const fetchMarutiSuzukiCars = () => async (dispatch) => {
   dispatch(fetchCarLoading());
@@ -37,7 +36,7 @@ export const fetchSingleMarutiSuzukiCar = (_id) => async (dispatch) => {
 export const filterSearchCars = (searchTerm) => async (dispatch) => {
   dispatch(fetchSingleCarLoading());
   try {
-    await axios.get(`${API_URL}/get-cars/car?name=${searchTerm}`);
+    await axios.get(`${process.env.REACT_APP_API_URL}/get-cars/car?name=${searchTerm}`);
     dispatch(searchCars(searchTerm));
   } catch (error) {
     dispatch(fetchSingleCarFail(error.message));

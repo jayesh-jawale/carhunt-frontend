@@ -8,13 +8,13 @@ import {
   Table,
   Alert,
 } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { userUpdateProfile } from "../actions/userUpdateAction";
 import { orderListDetails } from "../actions/orderAction";
+import { userProfile } from "../actions/userAction";
 
 export function Profile() {
   const history = useHistory();
@@ -34,7 +34,6 @@ export function Profile() {
     } else {
       if (!success || success) {
         dispatch(orderListDetails());
-      } else {
         setName(users.name);
         setEmail(users.email);
       }
@@ -47,6 +46,7 @@ export function Profile() {
       alert("Password do not match");
     } else {
       dispatch(userUpdateProfile({ id: users._id, name, email, password }));
+      dispatch(userProfile())
       alert("Profile Updated");
     }
   };
