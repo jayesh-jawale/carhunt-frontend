@@ -17,20 +17,34 @@ export function Login() {
 
   const userDetails = {
     email,
-    password
-  }
+    password,
+  };
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    dispatch(userLogin(userDetails))
-    history.push("/landing-page")
-  }
+
+    dispatch(userLogin(userDetails));
+    history.push("/landing-page");
+  };
 
   return (
     <Container>
+      <Row>
+        <Col>
+          <span>
+            <b>User: </b>n@n.com / jayesh
+          </span>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <span>
+            <b>User: </b>n@nn.com / jayesh
+          </span>
+        </Col>
+      </Row>
       <Row>
         <Col>
           <h1 style={{ textAlign: "center" }}>CAR HUNT</h1>
