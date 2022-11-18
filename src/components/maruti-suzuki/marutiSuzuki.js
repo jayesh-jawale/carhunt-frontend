@@ -10,6 +10,7 @@ export function MarutiSuzuki() {
   return (
     <React.Fragment>
       {cars
+        // eslint-disable-next-line array-callback-return
         .filter((car) => {
           if (car.company === "Maruti") {
             return car;

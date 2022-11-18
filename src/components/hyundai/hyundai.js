@@ -19,6 +19,7 @@ export function Hyundai() {
     <React.Fragment>
       <div className="car-cards">
         {cars
+          // eslint-disable-next-line array-callback-return
           .filter((car) => {
             if (car.company === "Hyundai") {
               return car;
