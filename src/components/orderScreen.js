@@ -33,7 +33,7 @@ export function OrderScreen() {
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/config/paypal`
+        "https://carhunt-backend.vercel.app/api/config/paypal"
       );
       const script = document.createElement("script");
       script.type = "text/javascript";
