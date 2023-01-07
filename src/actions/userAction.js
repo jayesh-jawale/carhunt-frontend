@@ -5,7 +5,7 @@ export const userProfile = () => async (dispatch) => {
   dispatch(userPending());
   try {
     const token = sessionStorage.getItem("token");
-    const result = await axios.get(`${process.env.REACT_APP_API_URL}/v1/user`, {
+    const result = await axios.get("https://carhunt-backend.vercel.app/v1/user", {
       headers: {
         Authorization: token,
       },

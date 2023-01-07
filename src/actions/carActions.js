@@ -9,7 +9,7 @@ import {
   fetchSingleCarFail,
 } from "../slices/carSlice";
 
-const getCarsURL = `${process.env.REACT_APP_API_URL}/get-cars/`;
+const getCarsURL = "https://carhunt-backend.vercel.app/get-cars/";
 
 export const fetchMarutiSuzukiCars = () => async (dispatch) => {
   dispatch(fetchCarLoading());
@@ -36,7 +36,7 @@ export const fetchSingleMarutiSuzukiCar = (_id) => async (dispatch) => {
 export const filterSearchCars = (searchTerm) => async (dispatch) => {
   dispatch(fetchSingleCarLoading());
   try {
-    await axios.get(`${process.env.REACT_APP_API_URL}/get-cars/car?name=${searchTerm}`);
+    await axios.get(`https://carhunt-backend.vercel.app/get-cars/car?name=${searchTerm}`);
     dispatch(searchCars(searchTerm));
   } catch (error) {
     dispatch(fetchSingleCarFail(error.message));

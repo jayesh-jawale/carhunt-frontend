@@ -24,7 +24,7 @@ export const orderCre = (data) => async (dispatch) => {
   dispatch(addOrderLoading());
   try {
     const token = sessionStorage.getItem("token");
-    const result = await axios.post(`${process.env.REACT_APP_API_URL}/api/orders`, data, {
+    const result = await axios.post("https://carhunt-backend.vercel.app/api/orders", data, {
       headers: {
         Authorization: token,
       },
@@ -40,7 +40,7 @@ export const getFinalOrderDetails = (_id) => async (dispatch) => {
   dispatch(finalOrderLoading());
   try {
     const token = sessionStorage.getItem("token");
-    const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders/${_id}`, {
+    const result = await axios.get(`https://carhunt-backend.vercel.app/api/orders/${_id}`, {
       headers: {
         Authorization: token,
       },
@@ -56,7 +56,7 @@ export const orderPayDetails = (_id, paymentResult) => async (dispatch) => {
   try {
     const token = sessionStorage.getItem("token");
     const result = await axios.put(
-      `${process.env.REACT_APP_API_URL}/api/orders/${_id}/pay`,
+      `https://carhunt-backend.vercel.app/api/orders/${_id}/pay`,
       paymentResult,
       {
         headers: {
@@ -74,7 +74,7 @@ export const orderListDetails = () => async (dispatch) => {
   dispatch(orderListLoading());
   try {
     const token = sessionStorage.getItem("token");
-    const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/order/myorders`, {
+    const result = await axios.get("https://carhunt-backend.vercel.app/api/order/myorders", {
       headers: {
         Authorization: token,
       },
